@@ -108,10 +108,10 @@ public class MovieControllerTest {
 
     @Test
     void testThatAddMovieInsertsandReturnsMovie() throws Exception {
-        MovieDto movieDto = MovieDto.builder().title("Inception").build();
-        MovieEntity movieEntity = MovieEntity.builder().title("Inception").build();
-        MovieEntity movieEntityWithId = MovieEntity.builder().id(1L).title("Inception").build();
-        MovieDto movieDtoWithId = MovieDto.builder().id(1L).title("Inception").build();
+        MovieDto movieDto = new MovieDto(null, "Inception");
+        MovieEntity movieEntity = new MovieEntity(null, "Inception");
+        MovieDto movieDtoWithId = new MovieDto(1L, "Inception");
+        MovieEntity movieEntityWithId = new MovieEntity(1L, "Inception");
         EntityModel<MovieDto> entityModel = EntityModel.of(movieDtoWithId,
                 Link.of("/movies").withRel("movies"), Link.of("/movie/1").withSelfRel());
 
@@ -133,7 +133,7 @@ public class MovieControllerTest {
 
     @Test
     void testThatAddMovieReturns400WhenMovieIDisProvided() throws Exception {
-        MovieDto movieDto = MovieDto.builder().id(1L).title("Inception").build();
+        MovieDto movieDto = new MovieDto(1L, "Inception");
         mockMvc.perform(post("/movies").contentType("application/json").content(objectMapper.writeValueAsString(movieDto)))
                 .andDo(print())
                 .andExpect(status().isBadRequest());

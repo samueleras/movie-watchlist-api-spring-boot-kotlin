@@ -22,8 +22,12 @@ public class MovieMapperImplIT {
     @BeforeEach
     void setUp() {
         //Arrange
-        entity = MovieEntity.builder().id(1L).title("Harry Potter").build();
-        dto = MovieDto.builder().id(1L).title("Harry Potter").build();
+        entity = new MovieEntity();
+        entity.setId(1L);
+        entity.setTitle("Harry Potter");
+        dto = new MovieDto();
+        dto.setId(1L);
+        dto.setTitle("Harry Potter");
     }
 
     @Test

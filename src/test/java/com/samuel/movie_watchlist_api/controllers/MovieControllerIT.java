@@ -34,7 +34,7 @@ public class MovieControllerIT {
 
     private MovieEntity movieEntity1;
     private MovieEntity movieEntity2;
-    private final MovieDto movieDto = MovieDto.builder().title("Inception").build();
+    private final MovieDto movieDto = new MovieDto(null, "Inception");
 
     @BeforeEach
     void setUp() {
